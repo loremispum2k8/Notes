@@ -1,0 +1,136 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+@font-face{
+    font-family: SFbold;
+    src: url(fonts/SF-Pro-Display-Bold.otf);
+}
+@font-face{
+    font-family: SFmedium;
+    src: url(fonts/SF-Pro-Display-Medium.otf);
+}
+@font-face{
+    font-family: SFnormal;
+    src: url(fonts/SF-Pro-Display-Regular.otf);
+}
+@font-face{
+    font-family: SFthin;
+    src: url(fonts/SF-Pro-Display-Thin.otf);
+}
+body{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(to bottom, #000000 0%, #250745 100% );
+}
+.oval-light{
+    position: absolute;
+    bottom: 0;
+    margin-bottom: -200px;
+    height: 400px;
+    width: 160%;
+    background:linear-gradient(to bottom, #62069F 0%, #FFFFFF 50%);
+    border-radius: 50%;
+    filter: blur(300px);
+    z-index: 4;
+}
+.canvas{
+    background-size: 10px 10px;
+    background-image: linear-gradient(to right, rgba(128, 128, 128, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(128, 128, 128, 0.1) 1px, transparent 1px);;
+    width: 100%;
+    opacity: 100%;
+    flex:1;
+    z-index: 5;
+}
+.control-panel-container{
+    width: 100%;
+    padding: 20px;
+    z-index: 5;
+}
+.control-pannel{
+    width: 100%;
+    border-radius: 30px;
+    padding:16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: linear-gradient(to bottom, hsla(0, 0%, 0%, 0.38) 0%, hsla(0, 0%, 7%, 0.38) 100% );
+    box-shadow: 0px 0px 18px 0px hsla(0, 0%, 0%, 0.6);
+}
+.cp-buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px 10px;
+    justify-content: space-between;
+    font-size: 16px;
+    font-family: SFnormal;
+}
+.add{
+    color: white;
+    padding: 4px;
+    cursor: pointer;
+}
+.delete{
+    color: #FC1D1D;
+    cursor: pointer;
+    padding: 4px;
+}
+.carousel{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    overflow-y: visible;
+    padding: 2px 2px;
+    overflow-x: scroll;
+    border-radius: 12px;
+}
+.carousel::-webkit-scrollbar{
+    display: none;
+}
+.notes-card{
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    gap: 14px;
+    background-color: white;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.1s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.notes-card:hover{
+    transform: scale(1.02);
+}
+.card-top-row, .card-bottom-row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 170px;
+}
+.card-top-row svg{
+    color: #888888;
+}
+.date{
+    color: #888888;
+    font-size: 12px;
+    font-family: SFnormal;
+}
+.title{
+    font-family: SFbold;
+    font-size: 24px;
+    width: 120px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
