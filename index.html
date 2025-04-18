@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1.0">
     <title>Notes</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -39,6 +39,26 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="addPopUpContainer">
+        <form class="addPopUp" spellcheck="false">
+            <div class="add-top-row">
+                <div class="add-date-delete">
+                    <div class="date-container">
+                        <p for="add-date-title">Date:</p>
+                        <p class="add-date">12.01.2025</p>
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"><path fill="currentColor" fill-rule="evenodd" d="M1.707.293A1 1 0 0 0 .293 1.707L5.586 7L.293 12.293a1 1 0 1 0 1.414 1.414L7 8.414l5.293 5.293a1 1 0 0 0 1.414-1.414L8.414 7l5.293-5.293A1 1 0 0 0 12.293.293L7 5.586z" clip-rule="evenodd"/></svg>
+                </div>
+                <div class="add-title-container">
+                    <label for="add-title">Title:</label>
+                    <input type="text" id="add-title" required>
+                </div>
+            </div>
+            <textarea id="add-content"></textarea>
+            <button class="add-add-button" type="submit">Add</button>
+        </form>
     </div>
     
 
