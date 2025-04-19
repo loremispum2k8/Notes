@@ -30,6 +30,13 @@ body{
     justify-content: space-between;
     background: linear-gradient(to bottom, #000000 0%, #250745 100% );
 }
+.deleteimg{
+    width: 20px;
+    opacity: 0.5;
+}
+.editimg{
+    width: 18px;
+}
 .oval-light{
     position: absolute;
     bottom: 0;
@@ -90,8 +97,7 @@ body{
     flex-direction: row;
     align-items: center;
     gap: 20px;
-    overflow-y: visible;
-    padding: 2px 2px;
+    overflow-y: hidden;
     overflow-x: scroll;
     border-radius: 12px;
 }
@@ -103,6 +109,7 @@ body{
     flex-direction: column;
     padding: 16px;
     gap: 14px;
+    height: 100%;
     background-color: white;
     border-radius: 12px;
     cursor: pointer;
@@ -136,6 +143,49 @@ body{
     overflow: hidden;
 }
 
+
+@keyframes showPopUp{
+    0%{
+        opacity:0;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px; 
+    }
+    100%{
+        opacity:1;
+        border-radius: 30px;
+        width: 100%;
+        height: 100%; 
+    }
+}
+@keyframes exitPopUp{
+    0%{
+        opacity:1;
+        border-radius: 30px;
+        width: 100%;
+        height: 100%; 
+    }
+    100%{
+        opacity:0;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px; 
+    }
+}
+.showPopUp{
+    animation-name: showPopUp;
+    animation-duration: 0.1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.1, 0.75, 0.85, 0.35);
+}
+.exitPopUp{
+    animation-name: exitPopUp;
+    animation-duration: 0.1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.1, 0.75, 0.85, 0.35);
+}
 .addPopUpContainer{
     position: absolute;
     padding: 20px;
@@ -143,12 +193,13 @@ body{
     height: 65%;
     z-index: 100;
     top: 0;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
 }
 .addPopUp{
     display: flex;
+    opacity: 0;
     padding: 20px;
     justify-content: space-between;
     flex-direction: column;
@@ -168,6 +219,7 @@ body{
     background-color: transparent;
     border: none;
     outline: none;
+    cursor: pointer;
 }
 .date-container{
     display: flex;
@@ -231,4 +283,17 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+.add-exit{
+    cursor: pointer;
+}
+
+
+@media screen and (min-width:1000px){
+    .add-title-container{
+        font-size: 24px;
+    }
+    .addPopUp textarea{
+        padding: 14px;
+    }
 }
