@@ -48,7 +48,7 @@ let notesArray = [];
 function addNotes(){
     carousel.innerHTML = '';
     notesArray.forEach(note=>{
-        let notesCard = document.createElement('div'); notesCard.classList.add('notes-card');
+        let notesCard = document.createElement('div'); notesCard.classList.add('notes-card'); notesCard.setAttribute('data-ID', note.id)
         let cardTopRow = document.createElement('div'); cardTopRow.classList.add('card-top-row'); notesCard.appendChild(cardTopRow);
         let date = document.createElement('p'); date.classList.add('date'); date.textContent = note.date; cardTopRow.appendChild(date);
         let deleteimg = document.createElement('img'); deleteimg.classList.add('deleteimg'); deleteimg.setAttribute('src','images/material-symbols--close-rounded.png'); cardTopRow.appendChild(deleteimg);
@@ -73,5 +73,19 @@ ADDBUTTON.addEventListener('click',(e)=>{
     console.log(notesArray);
     addPopUp.reset();
     addNotes();
+
+
+})
+
+    carousel.addEventListener('click',(e)=>{
+        if(e.target.classList.contains('deleteimg')){
+            notesArray = notesArray.filter((note)=>note.id !== e.target.parentElement.parentElement.getAttribute('data-ID'));
+            addNotes();
+        }
+})
+
+deleteBtn.addEventListener('click',()=>{
+    carousel.innerHTML = '';
+    notesArray = [];
 })
 

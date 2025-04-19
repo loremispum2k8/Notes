@@ -33,6 +33,7 @@ body{
 .deleteimg{
     width: 20px;
     opacity: 0.5;
+    z-index: 10;
 }
 .editimg{
     width: 18px;
@@ -71,7 +72,6 @@ body{
     gap: 16px;
     background: linear-gradient(to bottom, hsla(0, 0%, 0%, 0.38) 0%, hsla(0, 0%, 7%, 0.38) 100% );
     box-shadow: 0px 0px 18px 0px hsla(0, 0%, 0%, 0.6);
-    height: 164px;
 }
 .cp-buttons{
     display: flex;
@@ -98,26 +98,31 @@ body{
     align-items: center;
     gap: 20px;
     overflow-y: hidden;
-    overflow-x: scroll;
+    overflow-x: auto;
     border-radius: 12px;
+    height: 110px;
 }
 .carousel::-webkit-scrollbar{
-    display: none;
+    background-color: rgb(230, 230, 230);
+    border-radius: 20px;
+    height: 10px;
+}
+.carousel::-webkit-scrollbar-thumb {
+    background-color: rgb(0, 0, 0);
+    border-radius: 10px;
 }
 .notes-card{
     display: flex;
+    margin-bottom: 10px;
     flex-direction: column;
     padding: 16px;
     gap: 14px;
-    height: 100%;
+    height: 90px;
     background-color: white;
     border-radius: 12px;
     cursor: pointer;
     transition: all 0.1s;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-.notes-card:hover{
-    transform: scale(1.02);
 }
 .card-top-row, .card-bottom-row{
     display: flex;
