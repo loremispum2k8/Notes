@@ -191,7 +191,7 @@ body{
     animation-fill-mode: forwards;
     animation-timing-function: cubic-bezier(0.1, 0.75, 0.85, 0.35);
 }
-.addPopUpContainer{
+.addPopUpContainer, .editPopUpContainer{
     position: absolute;
     padding: 20px;
     width: 100%;
@@ -202,7 +202,7 @@ body{
     align-items: center;
     justify-content: center;
 }
-.addPopUp{
+.addPopUp, .editPopUp{
     display: flex;
     opacity: 0;
     padding: 20px;
@@ -215,7 +215,7 @@ body{
     height: 100%;
     gap: 16px;
 }
-.add-add-button{
+.add-add-button, .edit-edit-button{
     align-self: flex-end;
     padding-right: 6px;
     font-size: 16px;
@@ -226,7 +226,7 @@ body{
     outline: none;
     cursor: pointer;
 }
-.date-container{
+.date-container, .edit-container{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -234,7 +234,7 @@ body{
     font-size: 14px;
     font-family: SFmedium;
 }
-.addPopUp textarea{
+.addPopUp textarea, .editPopUp textarea{
     flex: 1;
     resize: none;
     font-family: SFmedium;
@@ -252,10 +252,10 @@ body{
     height: 100%;
     width: 100%;
 }
-.addPopUp label{
+.addPopUp label, .editPopUp label{
     font-family: SFbold;
 }
-.add-title-container{
+.add-title-container, .edit-title-container{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -264,7 +264,7 @@ body{
     font-size: 20px;
     width: 100%;
 }
-#add-title{
+#add-title, #edit-title{
     font-size: 20px;
     font-family: SFmedium;
     padding: 6px;
@@ -275,7 +275,7 @@ body{
     border-radius: 10px;
     background-color: transparent;
 }
-.add-top-row{
+.add-top-row, .edit-top-row{
     padding: 0px 6px;
     display: flex;
     flex-direction: column;
@@ -283,13 +283,13 @@ body{
     color: #888888;
     font-family: SFmedium;
 }
-.add-date-delete{
+.add-date-delete, .edit-date-delete{
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.add-exit{
+.add-exit, .edit-exit{
     cursor: pointer;
 }
 
@@ -299,6 +299,12 @@ body{
         font-size: 24px;
     }
     .addPopUp textarea{
+        padding: 14px;
+    }
+    .edit-title-container{
+        font-size: 24px;
+    }
+    .editPopUp textarea{
         padding: 14px;
     }
 }

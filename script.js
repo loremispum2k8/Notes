@@ -34,7 +34,7 @@ addExit.addEventListener('click',()=>{
     addPopUp.reset();
     setTimeout(()=>{
         addContainer.style.display = 'none'
-    },1000);
+    },500);
 })
 
 let carousel = document.querySelector('.carousel')
@@ -77,11 +77,42 @@ ADDBUTTON.addEventListener('click',(e)=>{
 
 })
 
-    carousel.addEventListener('click',(e)=>{
-        if(e.target.classList.contains('deleteimg')){
-            notesArray = notesArray.filter((note)=>note.id !== e.target.parentElement.parentElement.getAttribute('data-ID'));
-            addNotes();
-        }
+carousel.addEventListener('click',(e)=>{
+    if(e.target.classList.contains('deleteimg')){
+        notesArray = notesArray.filter((note)=>note.id !== e.target.parentElement.parentElement.getAttribute('data-ID'));
+        addNotes();
+    }
+})
+
+let editPopUpContainer = document.querySelector('.editPopUpContainer')
+let editPopUp = document.querySelector('.editPopUp');
+let editDate = document.querySelector('.edit-date');
+let editExit = document.querySelector('.edit-exit');
+let editTitle = document.querySelector('#edit-title');
+let editContent = document.querySelector('#edit-content');
+carousel.addEventListener('click',(e)=>{
+    if(e.target.classList.contains('editimg')){
+        editPopUpContainer.style.display = 'flex';
+        editPopUp.classList.add('showPopUp');
+        editPopUpContainer.setAttribute('data-ID',e.target.parentElement.parentElement.getAttribute('data-id'))
+        editPopUp.classList.remove('exitPopUp');
+
+        notesArray.forEach((note)=>{
+            if(note.id == e.target.parentElement.parentElement.getAttribute('data-id')){
+                editDate.textContent = note.date
+                editTitle.value = note.title
+                editContent.value = note.content
+            }
+        })
+    }
+})
+editExit.addEventListener('click',()=>{
+    editPopUp.classList.add('exitPopUp');
+    editPopUp.classList.remove('showPopUp');
+    editPopUp.reset();
+    setTimeout(()=>{
+        editPopUpContainer.style.display = 'none'
+    },500);
 })
 
 deleteBtn.addEventListener('click',()=>{
