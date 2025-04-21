@@ -308,3 +308,15 @@ body{
         padding: 14px;
     }
 }
+
+
+
+.drag{
+    height: 70px;
+    width: 70px;
+    background-color: white;
+    border-radius: 50%;
+    position: fixed;
+    cursor: pointer;
+    z-index: 999;
+}

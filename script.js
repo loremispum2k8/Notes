@@ -73,7 +73,8 @@ ADDBUTTON.addEventListener('click',(e)=>{
     console.log(notesArray);
     addPopUp.reset();
     addNotes();
-
+    //let card = document.querySelectorAll('.notes-card');
+    //console.log(card)
 
 })
 
@@ -83,10 +84,6 @@ carousel.addEventListener('click',(e)=>{
         addNotes();
     }
 })
-
-
-
-//YOU ARE HERE//
 
 let editPopUpContainer = document.querySelector('.editPopUpContainer')
 let editPopUp = document.querySelector('.editPopUp');
@@ -140,3 +137,41 @@ deleteBtn.addEventListener('click',()=>{
     notesArray = [];
 })
 
+
+//DRAG//
+window.addEventListener('mouseover',(e)=>{
+    const card = e.target.closest('.notes-card');
+    if(card){
+        card.addEventListener('mousedown',()=>{
+            console.log('mosuedown')
+        })
+    }
+})
+
+
+//YOU ARE HERE//
+let newX = 0; let newY = 0; let startX = 0; let startY = 0;
+
+let drag = document.querySelector('.drag');
+
+drag.addEventListener('mousedown',mouseDown)
+function mouseDown(e){
+    startX = e.clientX;
+    startY = e.clientY;
+
+    document.addEventListener('mousemove',mouseMove);
+    document.addEventListener('mouseup',mouseUp);
+}
+
+function mouseMove(e){
+    newX = startX - e.clientX
+    newY = startY - e.clientY
+    startX = e.clientX;
+    startY = e.clientY;
+    drag.style.left = (drag.offsetLeft - newX) + 'px';
+    drag.style.top = (drag.offsetTop - newY) + 'px';
+}
+
+function mouseUp(e){
+    document.removeEventListener('mousemove',mouseMove)
+}
