@@ -84,12 +84,17 @@ carousel.addEventListener('click',(e)=>{
     }
 })
 
+
+
+//YOU ARE HERE//
+
 let editPopUpContainer = document.querySelector('.editPopUpContainer')
 let editPopUp = document.querySelector('.editPopUp');
 let editDate = document.querySelector('.edit-date');
 let editExit = document.querySelector('.edit-exit');
 let editTitle = document.querySelector('#edit-title');
 let editContent = document.querySelector('#edit-content');
+let editButton = document.querySelector('.edit-edit-button');
 carousel.addEventListener('click',(e)=>{
     if(e.target.classList.contains('editimg')){
         editPopUpContainer.style.display = 'flex';
@@ -106,6 +111,21 @@ carousel.addEventListener('click',(e)=>{
         })
     }
 })
+
+editButton.addEventListener('click',(e)=>{
+    e.preventDefault()
+    notesArray.forEach((note)=>{
+        if(note.id == editPopUpContainer.getAttribute('data-id')){
+            note.date = editDate.textContent;
+            note.title = editTitle.value;
+            note.content = editContent.value;
+            carousel.innerHTML='';
+            addNotes();
+        }
+    })
+    console.log(notesArray)
+})
+
 editExit.addEventListener('click',()=>{
     editPopUp.classList.add('exitPopUp');
     editPopUp.classList.remove('showPopUp');
