@@ -229,30 +229,47 @@ let newX;
 let newY;
 let startX;
 let startY;
-window.addEventListener('mouseover',(e)=>{
-    if(notesArray.length>0){
-        let canvasNotes = document.querySelectorAll('.noteCanvasPopUp');
-        canvasNotes.forEach((note)=>{
-            note.addEventListener('mousedown',mouseDown);
-            function mouseDown(e){
-                startX = e.clientX;
-                startY = e.clientY;
-
-                document.addEventListener('mousemove',mouseMove);
-                document.addEventListener('mouseup',mouseUp)
-            }
-            function mouseMove(e){
-                newX = startX - e.clientX;
-                newY = startY - e.clientY;
-                
-                startX = e.clientX;
-                startY = e.clientY;
-                note.style.left = (note.offsetLeft - newX) + 'px';
-                note.style.top = (note.offsetTop - newY) + 'px';
-            }
-            function mouseUp(){
-                document.removeEventListener('mousemove',mouseMove)
-            }
-        })
-    }
-});
+if(window.innerWidth > 600){
+    window.addEventListener('mouseover',(e)=>{
+        if(notesArray.length>0){
+            let canvasNotes = document.querySelectorAll('.noteCanvasPopUp');
+            canvasNotes.forEach((note)=>{
+                note.addEventListener('mousedown',mouseDown);
+                function mouseDown(e){
+                    startX = e.clientX;
+                    startY = e.clientY;
+    
+                    document.addEventListener('mousemove',mouseMove);
+                    document.addEventListener('mouseup',mouseUp)
+                }
+                function mouseMove(e){
+                    newX = startX - e.clientX;
+                    newY = startY - e.clientY;
+                    
+                    startX = e.clientX;
+                    startY = e.clientY;
+                    note.style.left = (note.offsetLeft - newX) + 'px';
+                    note.style.top = (note.offsetTop - newY) + 'px';
+                }
+                function mouseUp(){
+                    document.removeEventListener('mousemove',mouseMove)
+                }
+            })
+        }
+    });
+} else if(window.innerWidth <= 600){
+    window.addEventListener('mouseover',(e)=>{
+        if(notesArray.length>0){
+            let canvasNotes = document.querySelectorAll('.noteCanvasPopUp');
+            let textWidth = document.querySelectorAll('.noteCanvasContent')
+            canvasNotes.forEach((note)=>{
+                note.style.width = '80vw'
+                note.style.marginTop = '20px'
+                note.style.height = '50vw'
+            })
+            textWidth.forEach((text)=>{
+                text.style.width = '100%'
+            })
+        }
+    });
+}
