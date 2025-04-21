@@ -57,6 +57,8 @@ function addNotes(){
         let title = document.createElement('h2'); title.classList.add('title'); title.textContent = note.title; cardBottomRow.appendChild(title);
         let editimg = document.createElement('img'); editimg.classList.add('editimg'); editimg.setAttribute('src','images/solar--pen-bold.png'); cardBottomRow.appendChild(editimg);
 
+        let open = document.createElement('p'); open.classList.add('openBtn');open.textContent = 'Open'; notesCard.appendChild(open);
+
         carousel.appendChild(notesCard);
     })
 }
@@ -137,41 +139,120 @@ deleteBtn.addEventListener('click',()=>{
     notesArray = [];
 })
 
-
-//DRAG//
-window.addEventListener('mouseover',(e)=>{
-    const card = e.target.closest('.notes-card');
+let canvasArray = [];
+window.addEventListener('click',(e)=>{
+    let card = e.target.closest('.notes-card');
     if(card){
-        card.addEventListener('mousedown',()=>{
-            console.log('mosuedown')
+        let openBtn = document.querySelectorAll('.openBtn')
+        openBtn.forEach((btn)=>{
+            btn.addEventListener('click',()=>{
+                notesArray.forEach(note=>{
+                    if(note.id == btn.parentElement.getAttribute('data-ID') && !canvasArray.includes(note)){
+                        canvasArray.push(note);
+                        console.log(canvasArray)
+                        const form = document.createElement('form');
+                        form.className = 'noteCanvasPopUp';
+                        form.setAttribute('spellcheck', 'false');
+                        form.setAttribute('data-ID-delete',note.id)
+                        
+                        const topRow = document.createElement('div');
+                        topRow.className = 'noteCanvas-top-row';
+                        
+                        const dateDelete = document.createElement('div');
+                        dateDelete.className = 'noteCanvas-date-delete';
+                        
+                        const dateContainer = document.createElement('div');
+                        dateContainer.className = 'noteCanvas-container';
+                        
+                        const dateLabel = document.createElement('p');
+                        dateLabel.textContent = 'Date:';
+                        dateLabel.setAttribute('for', 'noteCanvas-noteCanvas-title');
+                        
+                        const dateValue = document.createElement('p');
+                        dateValue.className = 'noteCanvas-date';
+                        dateValue.textContent = note.date;
+                        
+                        dateContainer.appendChild(dateLabel);
+                        dateContainer.appendChild(dateValue);
+                        
+                        const closeImg = document.createElement('img');
+                        closeImg.className = 'noteCanvas-close';
+                        closeImg.src = 'images/material-symbols--close-rounded.png';
+                        
+                        dateDelete.appendChild(dateContainer);
+                        dateDelete.appendChild(closeImg);
+                        
+                        const titleContainer = document.createElement('div');
+                        titleContainer.className = 'noteCanvas-title-container';
+                        
+                        const titleLabel = document.createElement('p');
+                        titleLabel.className = 'noteCanvas-title-label';
+                        titleLabel.textContent = 'Title:';
+                        
+                        const titleValue = document.createElement('p');
+                        titleValue.className = 'noteCanvas-title';
+                        titleValue.textContent = note.title
+                        
+                        titleContainer.appendChild(titleLabel);
+                        titleContainer.appendChild(titleValue);
+                        
+                        topRow.appendChild(dateDelete);
+                        topRow.appendChild(titleContainer);
+                        
+                        const content = document.createElement('p');
+                        content.className = 'noteCanvasContent';
+                        content.textContent = note.content;
+                        
+                        form.appendChild(topRow);
+                        form.appendChild(content);
+                        
+                        document.body.appendChild(form);
+                    }
+                })
+            })
         })
+    }
+})
+window.addEventListener('click',(e)=>{
+    if(e.target.classList.contains('noteCanvas-close')){
+        e.preventDefault();
+        canvasArray = canvasArray.filter(note=>note.id!==e.target.parentElement.parentElement.parentElement.getAttribute('data-ID-delete'));
+        let deleteItem = document.querySelector(`[data-ID-delete="${e.target.parentElement.parentElement.parentElement.getAttribute('data-ID-delete')}"]`);
+        if(deleteItem){
+            deleteItem.remove();
+        }
     }
 })
 
 
-//YOU ARE HERE//
-let newX = 0; let newY = 0; let startX = 0; let startY = 0;
+let newX;
+let newY;
+let startX;
+let startY;
+window.addEventListener('mouseover',(e)=>{
+    if(notesArray.length>0){
+        let canvasNotes = document.querySelectorAll('.noteCanvasPopUp');
+        canvasNotes.forEach((note)=>{
+            note.addEventListener('mousedown',mouseDown);
+            function mouseDown(e){
+                startX = e.clientX;
+                startY = e.clientY;
 
-let drag = document.querySelector('.drag');
-
-drag.addEventListener('mousedown',mouseDown)
-function mouseDown(e){
-    startX = e.clientX;
-    startY = e.clientY;
-
-    document.addEventListener('mousemove',mouseMove);
-    document.addEventListener('mouseup',mouseUp);
-}
-
-function mouseMove(e){
-    newX = startX - e.clientX
-    newY = startY - e.clientY
-    startX = e.clientX;
-    startY = e.clientY;
-    drag.style.left = (drag.offsetLeft - newX) + 'px';
-    drag.style.top = (drag.offsetTop - newY) + 'px';
-}
-
-function mouseUp(e){
-    document.removeEventListener('mousemove',mouseMove)
-}
+                document.addEventListener('mousemove',mouseMove);
+                document.addEventListener('mouseup',mouseUp)
+            }
+            function mouseMove(e){
+                newX = startX - e.clientX;
+                newY = startY - e.clientY;
+                
+                startX = e.clientX;
+                startY = e.clientY;
+                note.style.left = (note.offsetLeft - newX) + 'px';
+                note.style.top = (note.offsetTop - newY) + 'px';
+            }
+            function mouseUp(){
+                document.removeEventListener('mousemove',mouseMove)
+            }
+        })
+    }
+});

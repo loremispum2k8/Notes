@@ -36,7 +36,8 @@ body{
     z-index: 10;
 }
 .editimg{
-    width: 18px;
+    width: 28px;
+    padding: 4px;
 }
 .oval-light{
     position: absolute;
@@ -100,29 +101,39 @@ body{
     overflow-y: hidden;
     overflow-x: auto;
     border-radius: 12px;
-    height: 110px;
+    height: 140px
 }
 .carousel::-webkit-scrollbar{
-    background-color: rgb(230, 230, 230);
+    background-color: transparent;
     border-radius: 20px;
-    height: 10px;
+    height: 6px;
 }
 .carousel::-webkit-scrollbar-thumb {
-    background-color: rgb(0, 0, 0);
+    background-color: #bdbdbd;
     border-radius: 10px;
+    cursor: pointer;
 }
 .notes-card{
     display: flex;
     margin-bottom: 10px;
     flex-direction: column;
     padding: 16px;
-    gap: 14px;
-    height: 90px;
+    gap: 6px;
+    height: 120px;
     background-color: white;
     border-radius: 12px;
     cursor: pointer;
     transition: all 0.1s;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.openBtn{
+    font-family: SFmedium;
+    font-size: 14px;
+    color: #888888;
+    padding: 6px 12px;
+    border: 1px solid #888888;
+    border-radius: 20px;
+    width: fit-content;
 }
 .card-top-row, .card-bottom-row{
     display: flex;
@@ -292,6 +303,83 @@ body{
 .add-exit, .edit-exit{
     cursor: pointer;
 }
+
+.noteCanvasPopUp{
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0px 0px 18px 0px 
+    hsla(0, 0%, 0%, 0.6);
+    top: 0;
+    left: 0;
+    z-index: 10;
+    min-width: 160px;
+    padding: 16px;
+    border-radius: 12px;
+}
+.noteCanvas-top-row{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.noteCanvas-date-delete{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.noteCanvas-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-family: SFmedium;
+    color: #888888;
+}
+.noteCanvas-close{
+    width: 22px;
+    opacity: 60%;
+    cursor: pointer;
+}
+.noteCanvas-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.noteCanvas-title-container{
+    display: flex;
+    flex: row;
+    align-items: center;
+    gap: 6px;
+    font-size: 18px;
+    font-family: SFnormal;
+}
+.noteCanvas-title{
+    font-family: SFbold;
+}
+.noteCanvasContent{
+    width: 140px;
+    max-height: 30vh;
+    overflow: scroll;
+    overflow-x: hidden;
+    font-size: 12px;
+    line-height: 1.4;
+    font-family: SFnormal;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 @media screen and (min-width:1000px){
